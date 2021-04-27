@@ -1,0 +1,34 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+    Cancel Items
+{% endblock %}
+
+{% block content %}
+<h1>Cancel Items</h1>
+<h2>Name: {{order.first_name}} {{order.last_name}}</h2>
+<h2>Email: {{order.email}}</h2>
+<h2>Address: {{order.address}}</h2>
+<h2>Date Order: {{order.created}}</h2>
+<h2>Total: ${{order}}</h2>
+
+<table>
+<thead>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Options</th>
+</thead>
+{% for item in order_items %}
+<tr>
+    <td>{{item.product}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.quantity}}</td>
+    <td>
+        <a href="{% url 'delete_item' item.id %}" class="btn btn-primary btn-sm">Cancel</a>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+{% endblock %}

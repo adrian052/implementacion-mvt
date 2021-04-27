@@ -1,0 +1,37 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+    Cancel Order
+{% endblock %}
+
+{% block content %}
+<h1 class="app-page-title">Order list(Last 24 hours):</h1>   
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Date Order</th>
+            <th>Total</th>
+            <th>Options</th>
+         </thead>
+        <tbody>
+            {% for order in object_list  %}
+            <tr>
+                <td>{{order.first_name}} {{order.last_name}}</td>
+                <td>{{order.email}}</td>
+                <td>{{order.address}} {{order.postal_code}} {{order.city}}</td>
+                <td>{{order.created}}</td>
+                <td>${{order}}</td>
+                <td>
+                    <a href="{% url 'delete_order' order.id %}" class="btn btn-primary btn-sm">Cancel</a>
+                    <br/>
+                    <a href="{% url 'cancel_order' order.id %}" class="btn btn-primary btn-sm">Cancel Items</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
